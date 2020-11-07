@@ -1,0 +1,50 @@
+﻿@model List<carousel_v1_mvc.Models.Game>
+@{
+
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <title>Carousel v1 Basic - feelingdev</title>
+</head>
+<body>
+    <section class="backgroundpanel addtransition">
+        @{
+            foreach (var item in Model.OrderByDescending(x => x.CreatedDate))
+            {
+                <div class="addtransition" style="background-image: url('../@item.GamePreview');"></div>
+            }
+        }
+    </section>
+
+    <div class="overlay"></div>
+
+    <section class="carouselpanel">
+
+        <div class="leftbtn btn addtransition" style="opacity:0;" onclick="move(true);">
+            <div></div>
+        </div>
+        <div class="rightbtn btn addtransition" style="opacity:0;" onclick="move(false);">
+            <div></div>
+        </div>
+
+        <div class="carousel addtransition">
+            @{
+                foreach (var item in Model.OrderBy(x => x.CreatedDate))
+                {
+                    <div class="addtransition" style="background-image: url('../@item.GameThumbnail');"></div>
+                }
+            }
+        </div>
+
+    </section>
+
+    <script src="~/js/jquery-3.5.1.min.js"></script>
+    <script src="~/js/script.js"></script>
+</body>
+</html>
